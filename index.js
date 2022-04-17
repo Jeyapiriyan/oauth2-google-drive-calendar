@@ -9,8 +9,9 @@ const fileUpload = require('express-fileupload')
 
 // init app
 let app = express()
-const port = 3000 || process.env.PORT
-app.listen(port, () => console.log(`server is running on ${port}`))
+const port =  process.env.PORT
+app.listen(process.env.PORT, '0.0.0.0',  ()=> console.log(`server is running on ${process.env.PORT}`));
+
 
 // init view
 nunjucks.configure('views', {
