@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">OAuth2 Playground</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -44,17 +45,18 @@
             </div>
             <form action="/upload" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input style="display: inline-block;width: fit-content" type="file" class="form-control-file" required name="file_upload" id="file_upload">
+                    <input style="display: inline-block;width: fit-content" type="file" class="form-control-file"
+                        required name="file_upload" id="file_upload">
                     <button style="display: block; margin: 0 auto" class="btn btn-primary mb-2"
-                            type="submit">UPLOAD</button>
+                        type="submit">UPLOAD</button>
                 </div>
             </form>
         </div>
         <div class="jumbotron text-center text-primary">
             <form action="/calendar" method="get" enctype="multipart/form-data">
                 <div class="form-group">
-                    <button style="display: block; margin: 0 auto" class="btn btn-primary mb-2"
-                            type="submit">FETCH UPCOMING EVENT</button>
+                    <button style="display: block; margin: 0 auto" class="btn btn-primary mb-2" type="submit">FETCH
+                        UPCOMING EVENT</button>
                 </div>
             </form>
             <div>
@@ -76,4 +78,5 @@
         </div>
     </div>
 </body>
+
 </html>
