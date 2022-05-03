@@ -1,47 +1,40 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
 
+let strategy = new GoogleStrategy(
+    {
+        clientID: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        callbackURL: process.env.LOGIN_REDIRECT_URL,
+        passReqToCallback: true
 
-passport.serializeUser((user, done) => {
+    }, (__request, accessToken, __refreshToken, profile, done) => {
+        //save data in user session
+        user = {
+            "accesstoken": accessToken, // this token will be used to request google resources
+            'googleID': profile.id,
+            'name': profile.displayName,
+            'email': profile._json.email
+        }
+        done(null, user)
+    }
+)
 
+let serializerFunction = function (user, done) {
     let sessionUser = {
         _id: user.googleID,
         accessToken: user.accesstoken,
         name: user.name,
-        pic_url: user.pic_url,
         email: user.email
     }
-
     done(null, sessionUser)
-})
+}
 
 
-passport.deserializeUser((sessionUser, done) => {
+let deserializerFunction = function (user, done) {
+    done(null, user)
+}
 
-    done(null, sessionUser)
-})
-
-
-passport.use(
-    new GoogleStrategy(
-        {
-            clientID: process.env.CLIENT_ID,
-            clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: process.env.LOGIN_REDIRECT_URL,
-            passReqToCallback: true
-
-        }, (request, accessToken, refreshToken, profile, done) => {
-
-            //save data in session
-            user = {
-                "accesstoken": accessToken,
-                'googleID': profile.id,
-                'name': profile.displayName,
-                'pic_url': profile._json.picture,
-                'email': profile._json.email
-            }
-
-            done(null, user)
-        }
-    )
-)
+passport.serializeUser(serializerFunction)  // middleware to save user info in the session
+passport.deserializeUser(deserializerFunction) // middleware to retrieve user info in the session
+passport.use(strategy)
